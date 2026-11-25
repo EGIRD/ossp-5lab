@@ -1,0 +1,4 @@
+client_id,command,requests,total_ms,avg_rtt_ms,throughput_rps,ok,err,bytes_tx,bytes_rx
+1,"READ_FIRST small.txt 5",100,29.8246,0.295313,3352.94,100,0,4092,11292
+1,"READ_FIRST small.txt 5",100,59.5988,0.591093,1677.89,100,0,4092,11292
+1,"READ_FIRST small.txt 5",100,38.8149,0.383855,2576.33,100,0,4092,11292

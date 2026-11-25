@@ -1,0 +1,25 @@
+@startuml
+actor "Client 1" as C1
+actor "Client 2" as C2
+participant "TCP Server\n(Winsock)" as S
+database "sandbox/" as FS
+
+S -> S : WSAStartup(), socket(), bind(), listen()
+C1 -> S : TCP connect()
+S --> C1 : accept() [Thread 1]
+C2 -> S : TCP connect()
+S --> C2 : accept() [Thread 2]
+
+C1 -> S : REQ|1.0|1|1_1|LIST
+S -> FS : directory_iterator("sandbox")
+FS --> S : small.txt, large.txt
+S --> C1 : RES|1.0|1_1|OK|small.txt; large.txt
+
+C2 -> S : REQ|1.0|2|2_1|SIZE ../secret_outside.txt
+S -> S : resolveSandboxPath() -> Path escapes!
+S --> C2 : RES|1.0|2_1|ERR|ERR_ACCESS_DENIED
+
+C1 -> S : REQ|1.0|1|1_2|QUIT
+S --> C1 : RES|1.0|1_2|OK|BYE
+C1 -> S : shutdown(), closesocket()
+@enduml
