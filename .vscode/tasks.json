@@ -2,13 +2,13 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build Server and Client (MinGW)",
+      "label": "Build Server (MinGW)",
       "type": "shell",
       "command": "g++",
       "args": [
         "-std=c++17", "-O2", "-Wall",
-        "lab05-network/src/server/server.cpp",
-        "-o", "lab05-network/server.exe",
+        "src/server/server.cpp",
+        "-o", "server.exe",
         "-lws2_32"
       ],
       "group": { "kind": "build", "isDefault": true }
@@ -19,11 +19,11 @@
       "command": "g++",
       "args": [
         "-std=c++17", "-O2", "-Wall",
-        "lab05-network/src/client/client.cpp",
-        "-o", "lab05-network/client.exe",
+        "src/client/client.cpp",
+        "-o", "client.exe",
         "-lws2_32"
       ],
-      "group": "build"
+      "group": { "kind": "build", "isDefault": true }
     }
   ]
 }
