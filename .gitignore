@@ -1,0 +1,6 @@
+*.exe 
+*.obj 
+*.o 
+*.log 
+.vscode/* 
+!.vscode/tasks.json
